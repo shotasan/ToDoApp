@@ -18,10 +18,19 @@
         Add
       </button>
     </form>
-    <pre> {{ $data }}</pre>
+    <ul>
+      <!-- 配列todosから格納されたオブジェクトtodoとそのindexをとる -->
+      <li v-for="(todo, index) in todos">
+        <input type="checkbox" v-model="todo.isDone">
+        <!-- todo.isDoneがtrueならdoneクラスを付与する -->
+        <span v-bind:class="{ done: todo.isDone }">{{ todo.item }}</span>
+        <!-- deleteItem関数に引数indexを与えて呼び出す -->
+        <button v-on:click="deleteItem(index)">Delete</button>
+      </li>
+    </ul>
+    <!-- デバック用の記述 -->
+    <!-- <pre> {{ $data }}</pre> -->
   </div>
-
-
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script type="text/javascript" src="ToDoApp.js"></script>
